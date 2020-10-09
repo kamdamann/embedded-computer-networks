@@ -13,8 +13,11 @@
 #include "stm32f7xx_hal.h"
 
 // map the led to GPIO PI1 (this is the inbuilt led by the reset button)
-#define LED_PIN           GPIO_PIN_1
-#define LED_PORT          GPIOI
+
+//this code will later be included within a custom library for ease of use//
+
+#define LED_PIN           GPIO_PIN_1 	//defining GPIO_PIN_1 As LED PIN
+#define LED_PORT          GPIOI			
 #define LED_CLK_ENABLE()  __GPIOI_CLK_ENABLE()
 
 // declare our utility functions
@@ -26,8 +29,9 @@ int main()
 {
   // we need to initialise the hal library and set up the SystemCoreClock 
   // properly
-  HAL_Init();
+  HAL_Init();				//initiate hal library//
   init_sysclk_216MHz();
+	//these two lines will go into seperate 'clock' library//
   
   // initialise the gpio pins
   configure_gpio();
@@ -36,10 +40,10 @@ int main()
   while(1)
   {
     // toggle the led on the gpio pin
-    HAL_GPIO_TogglePin(LED_PORT, LED_PIN);
+    HAL_GPIO_TogglePin(LED_PORT, LED_PIN);		//toggle GPIO Pin 1 on GPIO Port I 
     
     // wait for 1 second
-    HAL_Delay(1000);
+    HAL_Delay(1000);  //delay of one second, inefficent code, consider switching for case statement//
   }
 }
 
