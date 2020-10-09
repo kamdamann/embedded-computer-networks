@@ -34,14 +34,14 @@ int main()
   HAL_Init();
   init_sysclk_216MHz();
 	
-	// initialise the gpio pins as outputs to drive LED//
+	// initialise the gpio pins as outputs to drive LED// //technically not needed as hal libraries are used but kept anyway//
 	init_gpio(ledr, OUTPUT);	//red//
 	init_gpio(leda, OUTPUT);	//amber//
 	init_gpio(ledg, OUTPUT);	//green//
 	
 	 while(1)
   {
-    // toggle the RED led on the gpio pin//
+    /*// toggle the RED led on the gpio pin//		//innefficent code, unused//
     toggle_gpio(ledr);
 			// wait for 1 second
     HAL_Delay(1000);
@@ -57,12 +57,38 @@ int main()
     toggle_gpio(ledg);
 			// wait for 1 second
     HAL_Delay(1500);
-		toggle_gpio(ledg);	//shut down green//
+		toggle_gpio(ledg);	//shut down green// */
 		
 		
 		
 		
-	
+			switch (state)	
+				
+		{
+			case 1:
+				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1,GPIO_PIN_SET);
+				if (HAL_GetTick() > (OldSysTick + 1000) )						//+ x determines delay time in ms// 
+			{
+					state = 2; OldSysTick = HAL_GetTick();
+			}
+				break;
+			case 2:
+				HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14,GPIO_PIN_SET);
+				if (HAL_GetTick() > (OldSysTick + 1000) ) 
+				{
+					state = 3; OldSysTick = HAL_GetTick();
+				}
+				break;	
+			case 3:
+				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15,GPIO_PIN_SET);
+				if (HAL_GetTick() > (OldSysTick + 2000) ) {	
+					state = 1; 	OldSysTick = HAL_GetTick();
+				}
+				break;	
+		}		
 		
 		
   }
