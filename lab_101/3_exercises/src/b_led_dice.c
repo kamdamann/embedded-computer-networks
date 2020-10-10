@@ -96,7 +96,7 @@ if (rnd == 1)
 		write_gpio(led1, HIGH);	//bottom right//
 	}	
 		
-	else if(rnd == 7)
+	else if(rnd == 7)		//Non active state?//
 	{
 		write_gpio(led1, HIGH);	//all active//
 		write_gpio(led2, HIGH);
@@ -121,3 +121,4 @@ if (rnd == 1)
 
 	}
 }
+//note printf statements are not currently supported in this program, debug watch has been used instead//
