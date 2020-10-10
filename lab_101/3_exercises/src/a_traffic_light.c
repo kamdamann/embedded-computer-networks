@@ -39,6 +39,8 @@ int main()
 	init_gpio(leda, OUTPUT);	//amber//
 	init_gpio(ledg, OUTPUT);	//green//
 	
+	printf("debug test");
+	
 	 while(1)
   {
     /*// toggle the RED led on the gpio pin//		//innefficent code, unused//
