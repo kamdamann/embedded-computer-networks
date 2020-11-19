@@ -47,7 +47,7 @@ int main()
   init_gpio(led, OUTPUT);
   
   // print an initial status message
-  printf("we are alive!\r\n");
+ // printf("we are alive!\r\n");
   
   // loop forever ...
   while(1)

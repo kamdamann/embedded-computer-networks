@@ -27,8 +27,8 @@
 // specify a welcome message
 const char * welcome_message[2] = 
 {
-  "*     Hello LCD World!     *",
-  "*      Welcome to SHU      *"
+  "*     Lets Play Warzone!     *",
+  "*  And go straight to gulag xx     *"
 };
 
 // CODE
@@ -54,7 +54,7 @@ int main()
   BSP_LCD_SetFont(&Font24); 
   
   // print the welcome message ...
-  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);	//looks like the screen is split into lines, each line corrolatesto vertical axis//
   BSP_LCD_DisplayStringAtLine(0, (uint8_t *)BOARDER);
   BSP_LCD_DisplayStringAtLine(1, (uint8_t *)welcome_message[0]);
   BSP_LCD_DisplayStringAtLine(2, (uint8_t *)welcome_message[1]);
@@ -64,9 +64,9 @@ int main()
   HAL_Delay(5000);
   
   // display an "uptime" counter
-  BSP_LCD_DisplayStringAtLine(5, (uint8_t *)"Current uptime =");
+  BSP_LCD_DisplayStringAtLine(5, (uint8_t *)"Current uptime = "); //space on line 4 proves im correct in my assumption//
   int counter = 0;
-  while(1)
+  while(1) 
   {
     // format a string based around the uptime counter
     char str[20];
@@ -76,6 +76,7 @@ int main()
     BSP_LCD_ClearStringLine(6);
     BSP_LCD_DisplayStringAtLine(6, (uint8_t *)str);
     
+
     HAL_Delay(1000);
   }
 }
